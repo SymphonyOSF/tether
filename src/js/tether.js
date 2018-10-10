@@ -765,11 +765,6 @@ class TetherClass extends Evented {
         }
       } else {
         let offsetParentIsBody = true;
-        function isFullscreenElement(e) {
-          let d = e.ownerDocument;
-          let fe = d.fullscreenElement || d.webkitFullscreenElement || d.mozFullScreenElement || d.msFullscreenElement;
-          return fe === e;
-        }
         let currentNode = this.element.parentNode;
         while (currentNode && currentNode.nodeType === 1 && currentNode.tagName !== 'BODY' && !isFullscreenElement(currentNode)) {
           if (getComputedStyle(currentNode).position !== 'static') {
@@ -807,6 +802,12 @@ class TetherClass extends Evented {
       });
     }
   }
+}
+
+function isFullscreenElement(e) {
+  let d = e.ownerDocument;
+  let fe = d.fullscreenElement || d.webkitFullscreenElement || d.mozFullScreenElement || d.msFullscreenElement;
+  return fe === e;
 }
 
 TetherClass.modules = [];

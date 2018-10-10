@@ -1,4 +1,4 @@
-/*! tether 1.4.4 */
+/*! tether 1.4.5 */
 
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
@@ -1252,14 +1252,7 @@ var TetherClass = (function (_Evented) {
             this.options.bodyElement.appendChild(this.element);
           }
         } else {
-          var isFullscreenElement = function isFullscreenElement(e) {
-            var d = e.ownerDocument;
-            var fe = d.fullscreenElement || d.webkitFullscreenElement || d.mozFullScreenElement || d.msFullscreenElement;
-            return fe === e;
-          };
-
           var offsetParentIsBody = true;
-
           var currentNode = this.element.parentNode;
           while (currentNode && currentNode.nodeType === 1 && currentNode.tagName !== 'BODY' && !isFullscreenElement(currentNode)) {
             if (getComputedStyle(currentNode).position !== 'static') {
@@ -1301,6 +1294,12 @@ var TetherClass = (function (_Evented) {
 
   return TetherClass;
 })(Evented);
+
+function isFullscreenElement(e) {
+  var d = e.ownerDocument;
+  var fe = d.fullscreenElement || d.webkitFullscreenElement || d.mozFullScreenElement || d.msFullscreenElement;
+  return fe === e;
+}
 
 TetherClass.modules = [];
 
